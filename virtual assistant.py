@@ -12,13 +12,26 @@ def talk(text):
     engine.say (text)
     engine.runAndWait ()
 
-try:
-    with sr.Microphone () as source:
-        print ('Listening...')
-        voice = listener.listen(source)
-        command = listener.recognize_google(voice)
-        command = command.lower()
-        if 'alexa' in command:
-            talk (command)
-except:
-    pass
+def take_command ():
+    try:
+        with sr.Microphone () as source:
+            print ('Listening...')
+            voice = listener.listen(source)
+            command = listener.recognize_google(voice)
+            command = command.lower()
+            if 'alexa' in command:
+                command = command.replace ('alexa', '')
+                print (command)
+    except:
+        pass
+    return command
+
+def run_alexa ():
+    command = take_cammand ()
+    print (command)
+    if 'play' in command:
+        song = command.replace ('play', '')
+        talk ('Playing' + song)
+        print ('Playing')
+
+run_alexa ()
