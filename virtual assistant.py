@@ -19,6 +19,7 @@ def talk(text):
 def take_command ():
     try:
         with sr.Microphone () as source:
+            talk("listening")
             print ('Listening...')
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
@@ -31,8 +32,7 @@ def take_command ():
     return command
 
 def run_alexa ():
-    command = take_cammand ()
-    print (command)
+    command = take_command ()
     if 'play' in command:
         song = command.replace ('play', '')
         talk ('Playing' + song)
@@ -40,6 +40,12 @@ def run_alexa ():
     elif 'time' in command:
         time = datetime.datetime.now().strftime('%I:%M %p')
         talk ("The current time is " + time)
+    elif 'date' in command:
+        date = datetime.datetime.now().strftime ('%m %D, %Y')
+        talk ("The date today is " + date)
+    elif 'date and time' in command:
+        date_time = datetime.datetime.now().strftime ('%m %D, %Y %I:%M %p')
+        talk (date_time)
     elif 'search for' in command:
         search = command.replace ('search for', '')
         wiki_info = wikipedia.summary(search, 2)
@@ -49,8 +55,11 @@ def run_alexa ():
         talk ("I'm doing great today. How about you?")
     elif 'Im doing fine' in command:
         talk ("That's great to hear.")
+    elif 'free today' in command:
+        talk ("Not really. I still have a lot to do today.")
     elif 'joke' in command:
-        talk (pyjokes.get_joke())
+        joke = pyjokes.get_joke()
+        talk (joke)
     else:
         talk ("I didn't understand that, please say it again.")
 
