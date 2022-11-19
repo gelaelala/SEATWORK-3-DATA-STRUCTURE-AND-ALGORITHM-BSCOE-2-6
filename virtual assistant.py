@@ -2,6 +2,7 @@
 
 import speech_recognition as sr
 import pyttsx3
+import pywhatkit
 
 listener = sr.Recognizer ()
 engine = pyttsx3.init ()
@@ -32,6 +33,6 @@ def run_alexa ():
     if 'play' in command:
         song = command.replace ('play', '')
         talk ('Playing' + song)
-        print ('Playing')
+        pywhatkit.playonyt (song)
 
 run_alexa ()
