@@ -5,6 +5,7 @@ import pyttsx3
 import pywhatkit
 import datetime
 import wikipedia
+import pyjokes
 
 listener = sr.Recognizer ()
 engine = pyttsx3.init ()
@@ -44,5 +45,11 @@ def run_alexa ():
         wiki_info = wikipedia.summary(search, 2)
         print (wiki_info)
         talk (wiki_info)
-
+    elif 'how are you' in command:
+        talk ("I'm doing great today. How about you?")
+    elif 'Im doing fine' in command:
+        talk ("That's great to hear.")
+    elif 'joke' in command:
+        talk (pyjokes.get_joke())
+    
 run_alexa ()
