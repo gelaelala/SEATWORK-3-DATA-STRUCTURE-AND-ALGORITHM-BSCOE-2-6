@@ -4,6 +4,7 @@ import speech_recognition as sr
 import pyttsx3
 import pywhatkit
 import datetime
+import wikipedia
 
 listener = sr.Recognizer ()
 engine = pyttsx3.init ()
@@ -38,5 +39,10 @@ def run_alexa ():
     elif 'time' in command:
         time = datetime.datetime.now().strftime('%I:%M %p')
         talk ("The current time is " + time)
+    elif 'search for' in command:
+        search = command.replace ('search for', '')
+        wiki_info = wikipedia.summary(search, 2)
+        print (wiki_info)
+        talk (wiki_info)
 
 run_alexa ()
