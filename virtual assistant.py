@@ -51,5 +51,8 @@ def run_alexa ():
         talk ("That's great to hear.")
     elif 'joke' in command:
         talk (pyjokes.get_joke())
-    
-run_alexa ()
+    else:
+        talk ("I didn't understand that, please say it again.")
+
+while True:
+    run_alexa ()
