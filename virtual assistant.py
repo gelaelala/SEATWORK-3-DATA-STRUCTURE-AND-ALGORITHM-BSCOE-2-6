@@ -40,37 +40,46 @@ def run_alexa ():
         song = command.replace ('play', '')
         song_play = 'Playing' + song
         print (song_play)
+        print()
         talk (song_play)
         pywhatkit.playonyt (song)
     elif 'time' in command:
         time = datetime.datetime.now().strftime('%I:%M %p')
         time_today = "The current time is " + time
         print (time_today)
+        print()
         talk (time_today)
     elif 'date' in command:
         date = datetime.datetime.now().strftime ('%B %d, %Y')
         date_today = "The date today is " + date
         print (date_today)
+        print()
         talk (date_today)
     elif 'search for' in command:
         search = command.replace ('search for', '')
         wiki_info = wikipedia.summary(search, 2)
         print (wiki_info)
+        print()
         talk (wiki_info)
     elif 'how are you' in command:
         great = "I'm doing great today."
         print (great)
+        print()
         talk (great)
     elif 'free today' in command:
         free = "Not really. I still have a lot to do today."
         print (free)
+        print()
         talk (free)
     elif 'joke' in command:
         joke = pyjokes.get_joke()
+        print (joke)
+        print()
         talk (joke)
     else: 
         say = "I didn't understand that, please say it again."
         print (say)
+        print ()
         talk (say)
 
 while True:
