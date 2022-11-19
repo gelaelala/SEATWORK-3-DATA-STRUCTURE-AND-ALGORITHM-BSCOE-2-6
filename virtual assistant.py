@@ -8,5 +8,6 @@ try:
         print ('Listening...')
         voice = listener.listen(source)
         command = listener.recognize_google(voice)
+        print (command)
 except:
     pass
