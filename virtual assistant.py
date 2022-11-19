@@ -19,14 +19,17 @@ def talk(text):
 def take_command ():
     try:
         with sr.Microphone () as source:
-            talk("listening")
-            print ('Listening...')
+            listen = "Listening..."
+            print (listen)
+            talk (listen)
+            print ()
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
             command = command.lower()
             if 'alexa' in command:
                 command = command.replace ('alexa', '')
                 print (command)
+                print ()
     except:
         pass
     return command
@@ -35,33 +38,40 @@ def run_alexa ():
     command = take_command ()
     if 'play' in command:
         song = command.replace ('play', '')
-        talk ('Playing' + song)
+        song_play = 'Playing' + song
+        print (song_play)
+        talk (song_play)
         pywhatkit.playonyt (song)
     elif 'time' in command:
         time = datetime.datetime.now().strftime('%I:%M %p')
-        talk ("The current time is " + time)
+        time_today = "The current time is " + time
+        print (time_today)
+        talk (time_today)
     elif 'date' in command:
-        date = datetime.datetime.now().strftime ('%m %D, %Y')
-        talk ("The date today is " + date)
-    elif 'date and time' in command:
-        date_time = datetime.datetime.now().strftime ('%m %D, %Y %I:%M %p')
-        talk (date_time)
+        date = datetime.datetime.now().strftime ('%B %d, %Y')
+        date_today = "The date today is " + date
+        print (date_today)
+        talk (date_today)
     elif 'search for' in command:
         search = command.replace ('search for', '')
         wiki_info = wikipedia.summary(search, 2)
         print (wiki_info)
         talk (wiki_info)
     elif 'how are you' in command:
-        talk ("I'm doing great today. How about you?")
-    elif 'Im doing fine' in command:
-        talk ("That's great to hear.")
+        great = "I'm doing great today."
+        print (great)
+        talk (great)
     elif 'free today' in command:
-        talk ("Not really. I still have a lot to do today.")
+        free = "Not really. I still have a lot to do today."
+        print (free)
+        talk (free)
     elif 'joke' in command:
         joke = pyjokes.get_joke()
         talk (joke)
-    else:
-        talk ("I didn't understand that, please say it again.")
+    else: 
+        say = "I didn't understand that, please say it again."
+        print (say)
+        talk (say)
 
 while True:
     run_alexa ()
